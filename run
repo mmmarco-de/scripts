@@ -1,0 +1,196 @@
+#!/bin/bash
+function ascii_title_1 {
+    echo "
+
+    ███╗   ███╗ █████╗ ██████╗  ██████╗ ██████╗
+    ████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔═══██╗
+    ██╔████╔██║███████║██████╔╝██║     ██║   ██║
+    ██║╚██╔╝██║██╔══██║██╔══██╗██║     ██║   ██║
+    ██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗╚██████╔╝
+    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝
+
+
+    Marco's Quick Options
+
+
+    "
+}
+
+# Function to show the menu
+function show_menu {
+    clear
+    ascii_title_1
+    echo "    Choose an option:"
+    echo "    1. Update & Upgrade DNF Packages"
+    echo "    2. Edit .zshrc"
+    echo "    3. Taskmanager (htop)"
+    echo "    a. OPTION_A"
+    echo "    h. About"
+    echo "    Any other key quits."
+    spaceline
+    read -p "   > " option
+}
+
+function run {
+    clear
+    ascii_title_1
+}
+
+function spaceline {
+    echo "  "
+}
+
+function about {
+    clear
+    ascii_title_1
+    echo "    ABOUT THIS SCRIPT"
+    spaceline
+    echo "    Made by mmmarco.de"
+    spaceline
+    
+    echo "    Scoials:
+      GitHub    mmmarco-de
+    Website   mmmarco.de"
+    spaceline
+    echo "    Contact:
+      You can contact me via email
+    marco@mmmarco.de"
+    spaceline
+    echo "    Restart this script please"
+    spaceline
+    echo "    Press any key to go exit..."
+    read -n1 -s
+    clear
+    exit
+}
+
+function testing {
+    clear
+    echo "
+    
+     ██████╗ ██╗  ██╗    ███╗   ██╗ ██████╗ ██╗
+    ██╔═══██╗██║  ██║    ████╗  ██║██╔═══██╗██║
+    ██║   ██║███████║    ██╔██╗ ██║██║   ██║██║
+    ██║   ██║██╔══██║    ██║╚██╗██║██║   ██║╚═╝
+    ╚██████╔╝██║  ██║    ██║ ╚████║╚██████╔╝██╗
+     ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═══╝ ╚═════╝ ╚═╝
+    "
+    spaceline && spaceline
+    echo "    You have discovered the testing option . . ."
+    echo "    Now we have to clear your memory and exit asap"
+    spaceline
+    echo "    I hope you don't come back . . .!"
+    sleep 4
+    clear
+    exit
+}
+
+# Loop
+while true; do
+    show_menu
+    
+    case "$option" in
+        1)
+            # Update DNF & Upgrade DNF-Packages
+            run
+            echo "    Update & Upgrade DNF Packages"
+            spaceline
+            
+            sleep 2
+            
+            echo "    RUNNING sudo dnf check-update"
+            sleep 0.35
+            sudo dnf check-update  > /dev/null 2>&1
+            echo "    DONE sudo dnf check-update"
+            
+            sleep 5
+            
+            echo "    RUNNING sudo dnf update"
+            sleep 0.35
+            sudo dnf update  > /dev/null 2>&1
+            echo "    DONE sudo dnf update"
+            
+            
+            # OPTION_1
+            echo "    DONE - Press any key to go exit..."
+            read -n1 -s
+            clear
+            exit
+        ;;
+        2)
+            # Edit .zshrc & Reload .zshrc
+            run
+            echo "    Edit .zshrc"
+            spaceline
+            
+            sleep 2
+            
+            echo "    RUNNING nano ~/.zshrc"
+            sleep 0.35
+            nano ~/.zshrc
+            echo "    DONE Editing .zshrc"
+            
+            sleep 5
+            
+            echo "    RUNNING source ~/.zshrc"
+            sleep 0.35
+            source ~/.zshrc  > /dev/null 2>&1
+            echo "    DONE source ~/.zshrc"
+            
+            
+            # OPTION_1
+            echo "    DONE - Press any key to go exit..."
+            read -n1 -s
+            clear
+            exit
+        ;;
+        3)
+            # Run htop (Taskmanager)
+            run
+            echo "    Taskmanager (htop)"
+            spaceline
+            echo "    RUNNING htop"
+            sleep 2
+            htop
+            sleep 0.5
+            echo "    CLOSED htop"
+            sleep 2
+            spaceline
+            echo "    Taskmanager closed - Press any key to go exit..."
+            read -n1 -s
+            clear
+            exit
+        ;;
+        a)
+            # Run & Show text & Sleep 5s & Clear & Show Menu
+            run
+            echo "    OPTION_A..."
+            spaceline
+            echo "    Option not available yet."
+            # OPTION_A
+            echo "    Restart this script please"
+            spaceline
+            echo "    Press any key to go exit..."
+            read -n1 -s
+            clear
+            exit
+        ;;
+        t)
+            # TESTING SRIPT, NOT LISTED, WORKS
+            testing
+        ;;
+        h)
+            # About
+            # Run function ABOUT
+            about
+        ;;
+        *)
+            clear
+            ascii_title_1
+            echo "    Bye . . ."
+            sleep 1
+            clear
+            exit
+        ;;
+    esac
+done
